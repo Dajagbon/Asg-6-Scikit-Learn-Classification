@@ -2,6 +2,8 @@
 
 ## Project Overview
 
+The logistic regression model performs best among the models in my script. It has the highest accuracy, precision, and recall percentage. The logistic regression has an accuracy score of 96%, which is excellent, although it’s not industry standards. High accuracy means the model correctly predicts a high percentage of the instances. The precision score is also great because high precision means fewer false positives. Finally, the recall score is 99%, which means fewer false negatives. 
+
 This project aims to utilize machine learning techniques to classify breast cancer using the built-in breast cancer dataset from Scikit Learn. The primary objectives of this project are to:
 
 1. Clean and preprocess the dataset.
@@ -11,7 +13,7 @@ This project aims to utilize machine learning techniques to classify breast canc
 
 ## Dataset
 
-The dataset used in this project is the built-in breast cancer dataset from Scikit Learn. It contains features computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. The features describe the characteristics of the cell nuclei present in the image.
+The dataset used in this project is the Breast Cancer dataset from Scikit-learn. It includes features computed from digitized images of fine needle aspirate (FNA) of breast mass and a binary target variable indicating the presence or absence of breast cancer.
 
 ### Columns in the Dataset
 
@@ -23,30 +25,65 @@ The dataset used in this project is the built-in breast cancer dataset from Scik
 - ... (additional features)
 - `target`: Binary classification (0 for malignant, 1 for benign)
 
-## Data Cleaning and Preprocessing
+## Class Design and Implementation
 
-The data cleaning and preprocessing steps are performed in the `Scikit Learn Classification.py` script. The main steps include:
+The project does not implement custom classes but makes extensive use of scikit-learn classes for machine learning models, preprocessing, and evaluation metrics.
 
-1. **Load Dataset**: Load the built-in breast cancer dataset from Scikit Learn.
-2. **Split Dataset**: Split the dataset into training and testing sets using the standard data division process.
+## 1. Data Loading and Preprocessing 
 
-### Excerpt from `Scikit Learn Classification.py`
+load_breast_cancer(): Function to load the Breast Cancer dataset.
 
-```python
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, classification_report
-import seaborn as sns
-import matplotlib.pyplot as plt
+train_test_split: Function to split the data into training and testing sets.
 
-# Load the breast cancer dataset
-data = load_breast_cancer()
-X = data.data
-y = data.target
+StandardScaler: Used to normalize the dataset.
 
-# Split the dataset into training and testing sets using the standard data division process
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+## 2. Model Initialization
+The following scikit-learn classes are used to initialize the models:
+
+LogisticRegression(max_iter=10000)
+
+SVC()
+
+RandomForestClassifier()
+
+KNeighborsClassifier()
+
+GradientBoostingClassifier()
+
+## 3. Model Training
+Each model is trained using the fit(X_train, y_train) method provided by scikit-learn.
+
+## 4. Predictions
+Predictions are made on the test set using the predict(X_test) method.
+
+## 5. Evaluation Metrics
+The following evaluation metrics are computed for each model:
+
+accuracy_score: Measures the ratio of correctly predicted instances to the total instances.
+
+precision_score: Measures the ratio of correctly predicted positive observations to the total predicted positives.
+
+recall_score: Measures the ratio of correctly predicted positive observations to all observations in the actual class.
+
+classification_report: Provides a detailed report of precision, recall, and F1-score for each class.
+
+confusion_matrix: Summarizes the prediction results by showing the number of true positives, true negatives, false positives, and false negatives.
+
+## 6. Visualization
+The project uses seaborn and matplotlib for visualizations:
+
+sns.heatmap: Used to plot the confusion matrix for each model.
+
+## Limitations
+Class Imbalance: The dataset may have an imbalance in classes which can affect model performance.
+
+Hyperparameter Tuning: The models are used with default parameters, and no hyperparameter tuning is performed. Hyperparameter optimization could improve the models' performance.
+
+Feature Engineering: The project uses raw features without additional feature engineering which might be required for better performance.
+
+## How to Run
+Ensure all necessary libraries are installed: pandas, numpy, scikit-learn, seaborn, matplotlib.
+
+Load and run the script provided in this ReadMe.
+
+Analyze the output metrics and confusion matrices to determine the best-performing model.
