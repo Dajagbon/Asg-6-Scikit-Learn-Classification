@@ -1,4 +1,3 @@
-# Asg-6-Scikit-Learn-Classification
 # Breast Cancer Classification Using Machine Learning
 
 ## Project Overview
